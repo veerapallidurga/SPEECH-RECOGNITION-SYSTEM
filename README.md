@@ -11,3 +11,5 @@ A Speech Recognition System enables a machine to identify and respond to human s
 The core of speech recognition systems lies in pattern recognition techniques, including machine learning models that are trained on vast datasets of spoken language to understand and predict the most likely words or commands based on input sound.
 
 For implementation purposes, a simple speech recognition system can be developed using Python libraries like speech_recognition for speech-to-text conversion and pyttsx3 for speech synthesis (text-to-speech).
+# OUTPUT FOR TASK 4
+![image](https://github.com/user-attachments/assets/6501ffa5-a8c6-41c8-93c9-40e25122987b)
