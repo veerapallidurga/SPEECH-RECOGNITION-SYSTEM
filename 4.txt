@@ -1,0 +1,53 @@
+import speech_recognition as sr
+import pyttsx3
+
+# Initialize the recognizer and text-to-speech engine
+recognizer = sr.Recognizer()
+engine = pyttsx3.init()
+
+# Function to talk back to the user
+def talk(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Function to listen and recognize speech
+def listen():
+    with sr.Microphone() as source:
+        print("Listening...")
+        recognizer.adjust_for_ambient_noise(source)  # Adjust for ambient noise
+        audio = recognizer.listen(source)  # Capture the audio
+        return audio
+
+# Function to recognize speech
+def recognize_speech():
+    try:
+        audio = listen()  # Get the audio
+        print("Recognizing...")
+        text = recognizer.recognize_google(audio)  # Using Google Web API to recognize speech
+        print(f"You said: {text}")
+        return text
+    except sr.UnknownValueError:
+        print("Sorry, I couldn't understand that.")
+        talk("Sorry, I couldn't understand that.")
+    except sr.RequestError:
+        print("Sorry, the service is down.")
+        talk("Sorry, the service is down.")
+
+# Main function
+def main():
+    while True:
+        command = recognize_speech().lower()
+        
+        if "hello" in command:
+            talk("Hello! How can I help you?")
+        elif "exit" in command:
+            talk("Goodbye!")
+            break
+        elif "your name" in command:
+            talk("I am a speech recognition system.")
+        else:
+            talk("Sorry, I didn't catch that. Can you say it again?")
+        
+if __name__ == "__main__":
+    talk("Hello! I am ready to listen.")
+    main()
